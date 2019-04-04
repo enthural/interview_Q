@@ -1,0 +1,14 @@
+mvc 
+get,set:data-->ui
+ui--(dom)change,keypress,keyup-->data input,select,textarea
+1
+<body>
+  <input q-value="value" type="text" id="input">
+  <div q-text="value" id="el"></div>
+<script>
+  var elems=[document.getelmentbyid('el',document.getelmentbyid('input'))]
+</script>
+</body>
+2
+3
+
