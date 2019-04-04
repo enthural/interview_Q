@@ -1,0 +1,14 @@
+css3 animation:
+@keyframes
+animation
+animtaion-name
+animation-duration
+animation-timing-function
+animation-delay
+animation-iteration-count
+animtaion-direction
+animtaion-play-state
+animation-fill-mode
+http://www.w3school.com.cn/css3/css3_animation.asp
+css3 transition
+transition:property duration timing-function delay
