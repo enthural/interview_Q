@@ -16,14 +16,22 @@ ls -ah可显示git仓库
 step1:git add 文件名.txt---告诉git，把文件添加到仓库;文件添加到暂存区(stage)
 step2:git commit -m ""---告诉git，把文件提交到仓库---commit可以一次提交多个文件;把暂存取得内容提交到当前分支;需要修改的文件统统放在暂存区，
 然后，一次性提交暂存取得所有修改
+/*版本回退*/---暂存区提交到了版本库
 git log--显示从最近到最远的提交日志/git log --pretty=online(格式化)
 git reset --hard HEAD^--HEAD当前版本;HEAD^上一个版本           cat文件名：linux下查看文件内容
 git reset --head commit_id---只要命令行未被关闭
 git reflog ---关闭电脑后查找commit id
+/×改错了东西×/
 git status--查看状态
 git diff
-git checkout --文件名.txt---撤销在工作区的修改
-git reset HEAD 文件名---撤销暂存区，重新放回工作区
+git checkout --文件名.txt---改错了工作取得某文件，撤销在工作区的修改(未add之前)
+git reset HEAD 文件名---不但改错了工作区某文件，还添加到了暂存区，撤销暂存区，想丢弃修改，先回到上个
+重新放回工作区(未commit之前)  git checkcout
+提交到版本库.git，撤销本次提交，不过未推到远程库
+rm 工作区 ！== 版本库
+确实删除git rm && git commit
+误删 git checkout
+本地仓库，github仓库
 
 
 
