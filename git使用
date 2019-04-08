@@ -1,0 +1,31 @@
+https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000
+安装。。。
+安装结束，需要设置git config --global user.name ""---git分布式管理系统，机器必须自报家门
+                git config --global user.email ""
+版本库---目录，在目录里面的文件都可被git管理起来
+1)创建一个版本库---选择一地，创建一新目录
+makdir 目录名
+cd 目录
+pwd显示当前目录
+2)git init--把目录变成git可管理的仓库---此时目录下多了一个.git(该目录用来跟踪管理'版本库',没事别改，小心破坏git仓库)
+ls -ah可显示git仓库
+3）把文件添加到版本库
+版本控制系统--只能跟踪文本文件的改动：txt文件，网页，程序代码
+图片，视频二进制文件没法跟踪文件变化
+把文件添加到仓库：---编写的文件放在‘新建的目录下’上
+step1:git add 文件名.txt---告诉git，把文件添加到仓库
+step2:git commit -m ""---告诉git，把文件提交到仓库---commit可以一次提交多个文件
+git log--显示从最近到最远的提交日志/git log --pretty=online
+git reset --hard 
+
+
+
+
+
+
+
+
+
+
+
+
