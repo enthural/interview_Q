@@ -21,6 +21,9 @@ git reset --hard HEAD^--HEAD当前版本;HEAD^上一个版本           cat文�
 git reset --head commit_id---只要命令行未被关闭
 git reflog ---关闭电脑后查找commit id
 git status--查看状态
+git diff
+git checkout --文件名.txt---撤销在工作区的修改
+git reset HEAD 文件名---撤销暂存区，重新放回工作区
 
 
 
