@@ -32,6 +32,31 @@ rm 工作区 ！== 版本库
 确实删除git rm && git commit
 误删 git checkout
 本地仓库，github仓库
+本地仓库下运行 git remote add origin git@github.com:（ssh公钥账户列表）
+git push -u origin master --把本地库的内容推送到远程仓库 -u第一次使用，git不但会把'本地'master分支内容推送到'远程'新的master分支&
+把'本地'master分支和'远程'master分支关联起来
+分支管理：
+  创建于合并分支：
+  git checkout -b dev---创建dev分支<=>git branch dev & git checkout dev
+  git branch ---查看当前分支
+  git merge---把master指向dev的当前提交，合并某分支到当前分支
+  git branch -d dev--删除dev分支
+  解决冲突：
+  bug分支：
+  feature分支：
+  多人协作：
+  rebase:
+
+
+
+
+
+
+
+
+
+
+
 
 
 
