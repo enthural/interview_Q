@@ -6,9 +6,9 @@ https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b
 1)创建一个版本库---选择一地，创建一新目录
 makdir 目录名
 cd 目录
-pwd显示当前目录
+pwd---显示当前目录
 2)git init--把目录变成git可管理的仓库---此时目录下多了一个.git(该目录用来跟踪管理'版本库',没事别改，小心破坏git仓库)
-ls -ah可显示git仓库
+ls -ah可显示.git仓库
 3）把文件添加到版本库
 版本控制系统--只能跟踪文本文件的改动：txt文件，网页，程序代码
 图片，视频二进制文件没法跟踪文件变化
@@ -24,11 +24,16 @@ git reflog ---关闭电脑后查找commit id
 /×改错了东西×/
 git status--查看状态
 git diff
+git diff HEAD --readme.txt查看工作区和版本库区别
 git checkout --文件名.txt---改错了工作取得某文件，撤销在工作区的修改(未add之前)
 git reset HEAD 文件名---不但改错了工作区某文件，还添加到了暂存区，撤销暂存区，想丢弃修改，先回到上个
-重新放回工作区(未commit之前)  git checkcout
+重新放回工作区(未commit之前)  git checkcout 把暂存取得修改回退到工作区
 提交到版本库.git，撤销本次提交，不过未推到远程库
 rm 工作区 ！== 版本库
+工作区：
+版本库：.git
+暂存区（stage）
+
 确实删除git rm && git commit
 误删 git checkout
 本地仓库，github仓库
