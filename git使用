@@ -40,13 +40,18 @@ rm 工作区 ！== 版本库
 本地仓库下运行 git remote add origin git@github.com:（ssh公钥账户列表）
 git push -u origin master --把本地库的内容推送到远程仓库 -u第一次使用，git不但会把'本地'master分支内容推送到'远程'新的master分支&
 把'本地'master分支和'远程'master分支关联起来
+git clone git@github.com:
+git://使用ssh,但也可使用https协议，每次推送必须使用口令
+https速度慢，
 分支管理：
   创建于合并分支：
   git checkout -b dev---创建dev分支<=>git branch dev & git checkout dev
   git branch ---查看当前分支
   git merge---把master指向dev的当前提交，合并某分支到当前分支
   git branch -d dev--删除dev分支
-  解决冲突：
+  解决冲突---就是把git合并失败登文件手动编辑为我们希望的内容，在提交
+  git log --graph分支合并图
+  git log --graph --pretty=online --abbrev-commit
   bug分支：
   feature分支：
   多人协作：
