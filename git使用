@@ -5,11 +5,11 @@ http://wiki.jikexueyuan.com/project/githug-walkthrough/level-3.html
                 git config --global user.email ""
 版本库---目录，在目录里面的文件都可被git管理起来
 1)创建一个版本库---选择一地，创建一新目录
-makdir 目录名
+mkdir 目录名
 cd 目录
 pwd---显示当前目录
 2)git init--把目录变成git可管理的仓库---此时目录下多了一个.git(该目录用来跟踪管理'版本库',没事别改，小心破坏git仓库)
-ls -ah可显示.git仓库
+ls -a可显示.git仓库
 3）把文件添加到版本库
 版本控制系统--只能跟踪文本文件的改动：txt文件，网页，程序代码
 图片，视频二进制文件没法跟踪文件变化
@@ -85,6 +85,27 @@ https速度慢，
 命令git tag -d <tagname>可以删除一个本地标签；
 
 命令git push origin :refs/tags/<tagname>可以删除一个远程标签。  
+****************************************************************
+git生命周期
+工作目录                               暂存区                               提交区
+untracked                            staged                               commited
+modified
+仓库里新建的文件
+/从别地复制过来的
+untracked files                     changes to be commited
+被编辑过的文件
+'modified'
+changes not staged for commit
+工作目录里在文件不会自动被git管理
+git add -A未加到暂存区在加到暂存区
+
+git config --get --local查看配置得用户名
+git config --get --global
+git config --add --local增加配置
+
+git status(相当于ll)---查询文件状态
+
+
 
 
 
