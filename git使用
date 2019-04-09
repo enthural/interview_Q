@@ -70,7 +70,20 @@ https速度慢，
   git pull    合并远程和本地分支，抓取远程的新提交，从远程抓取分支
   解决冲突
   push
-  rebase:
+  rebase:把本地未push的分叉提交历史整理成直线
+  标签
+  git tag 标签名---打标签
+  git tag---查看标签
+  找commit id
+  git show 标签名--查看标签信息
+  git tag -d 标签名
+命令git push origin <tagname>可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d <tagname>可以删除一个本地标签；
+
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签。  
 
 
 
