@@ -112,7 +112,14 @@ git status(相当于ll)---查询文件状态
 git rebase合并分支时，合并后的日之并非按各分值得提交时间排列，而是把一个分支的日志全部排列在两一个分志的日志之上；
 即使他们并行开发，在开发过程中交错提交，看起来也好像按先后顺序开发的一样
 mmaster "add content"
-ffeature "add feature"   git rebase feature 
+feature "add feature"   git rebase feature 
+仓库代码clone到本地---把私钥给
+生成密码--.ssh
+ssh-keygen -t rsa -b 4096 -C '邮箱'
+开启配置代理
+eval "$(ssh-agent -s)"
+pm2--本地自动化部署
+
 
 
 
