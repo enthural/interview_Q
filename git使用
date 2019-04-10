@@ -68,7 +68,7 @@ https速度慢，
   git push origin master/dev把‘本地提交’推送到‘远程仓库’        ----推送自己的修改
   git checkout -b dev origin/dev---创建远程origin的dev分支到本地，在‘本地创建’和远程分支对应的分支
   git branch --set-upstream-to=orgin/dev dev 设置dev与origin.dev连接，建立本地分支和远程分支的关联
-  git pull    合并远程和本地分支，抓取远程的新提交，从远程抓取分支
+  git pull    合并远程和本地分支，抓取远程的新提交，从远程抓取分支---git fetch(抓取数据) & git merge(合并)
   解决冲突
   push
   rebase:把本地未push的分叉提交历史整理成直线
@@ -119,6 +119,46 @@ ssh-keygen -t rsa -b 4096 -C '邮箱'
 开启配置代理
 eval "$(ssh-agent -s)"
 pm2--本地自动化部署
+
+git rm --cached filename---针对untracked文件(commit前)
+git reset filename---针对modefied文件(commit前)
+
+git reset --soft HEAD^取消最后一次提交操作
+git commit --amend相当于git reset --soft,git commit(插销commit)
+git commit -a -m ""将已跟踪文件中的执行修改/删除操作在文件提交到本地仓库，即使没有git add
+新加的文件(没有被git系统管理的文件)不能被提交到本地仓库
+
+git checkout filename 撤销工作目录中内容
+git checkout branch切换到×分枝
+git checkout -切换到上一分枝
+
+和其他人同时开发一个项目，大家都从中心仓库 clone 了文件到本地，然后分头工作，此时你只连接了一个远程仓库——中心仓库。
+如果你的同伴写了一个函数，正好你可以用到它，那么你可以把这个函数 pull 到你的仓库里，这时你就连接了第二个远程仓库——同伴的仓库，
+你们俩绕过了中心仓库，直接实现了私下交流，这也下是 Git 被称为‘分布式版本管理系统’的原因。
+
+git remote查看远程仓库名字
+git remote -v 查看远url程仓库l
+
+git remote add remote-name remote-url
+git remote remove origin 删除'本地'指定在'远程地址'
+
+git diff filename查看修改+3
+
+git blame filename查看代码被谁编辑过了
+
+git branch branch hash-code某次提交hash
+
+git branch -r查看远程分枝列表
+git log remote-name/branch-namec查看远程分支日志
+
+git rebase feature 在master上执行,master日知会
+git rebase master
+
+
+
+
+
+
 
 
 
