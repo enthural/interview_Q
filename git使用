@@ -153,9 +153,13 @@ git log remote-name/branch-namec查看远程分支日志
 
 git rebase feature 在master上执行,master日知会
 git rebase master
+            "test"
+          branch test update1   branch test update2
+master
+          "dev"
+          branch dev update
 
-
-
+https://www.imooc.com/article/45233
 
 
 
