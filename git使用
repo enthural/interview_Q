@@ -124,6 +124,7 @@ git rm --cached filename---针对untracked文件(commit前)
 git reset filename---针对modefied文件(commit前)
 
 git reset --soft HEAD^取消最后一次提交操作
+git reset --hard HEAD^删除最后一次提交操作/git reset --hard hash
 git commit --amend相当于git reset --soft,git commit(插销commit)
 git commit -a -m ""将已跟踪文件中的执行修改/删除操作在文件提交到本地仓库，即使没有git add
 新加的文件(没有被git系统管理的文件)不能被提交到本地仓库
@@ -139,6 +140,7 @@ git checkout -切换到上一分枝
 git remote查看远程仓库名字
 git remote -v 查看远url程仓库l
 
+git cherry-pick hash-code合并时选取其中一个提交合并到主线上
 git remote add remote-name remote-url
 git remote remove origin 删除'本地'指定在'远程地址'
 
@@ -160,9 +162,26 @@ master
           branch dev update
 
 https://www.imooc.com/article/45233
+https://www.zhihu.com/question/60279937
 
+$ git rebase --onto master server client      
+server 和 client 的共同祖先commit 为 C3，首先当前分支切换到 client ，并将其 HEAD 重置为 master，即为 C6，
+然后将client 分支上 C3-C9 （不包括 C3，即 C8 和 C9）提交到当前分支上，即 C6 之后。
+最终结果即为 client : C1-C2-C5-C6-C8-C9，C8 和 C9 是重新提交，其 commit_id 会改变。        
+$ git checkout master         $ git merge client        
+再进行如上两步操作，即可将 client 分支的部分功能开发内容合入 master
 
+git init会创建一个隐藏名为.git子目录
+git世界，一个文件是一个git对象，一次提交也是一个git对象。存储在./git/objects/
+git repack
+git repack -d打包后删除以作废的文件,./git/objects/pack
 
+git grep keywoed filename 在指定文件中查找关键词
+
+git log提交日志
+git reflog操作日志
+
+git submodule add url把别人仓库代码作为自己项目一个库来使用，不用clone/cp
 
 
 
