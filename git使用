@@ -104,6 +104,7 @@ git config --get --global
 git config --add --local增加配置
 
 git status(相当于ll)---查询文件状态
+git status -s(short)
 
 多人开发时，推送有先有后，根据git规则，推送时有人比你早推送了，再推送时会收到一个"no-fast forward”提示
 "不能快进"
@@ -171,17 +172,40 @@ server 和 client 的共同祖先commit 为 C3，首先当前分支切换到 cli
 $ git checkout master         $ git merge client        
 再进行如上两步操作，即可将 client 分支的部分功能开发内容合入 master
 
+git reset --hard hash可取消git reset --hard HEAD^删除的最后一次的提交
+git revert hash
+git revert hash --no-edit由系统自动生成一句提交说明。没有该参数，git自动调用文本编辑器请你编写提交说明
+
+git rebase -i hash---未推送到服务器
+"pick"，表示执行此次提交；
+"reword"，表示执行此次提交，但要'修改备注'内容；
+"edit"，表示可以修改此次提交，比如再追加文件或修改文件；
+"squash"，表示把此次提交的内容合并到上次提交中，备注内容也合并到上次提交中；
+"fixup"，和 "squash" 类似，但会丢弃掉此次备注内容；
+"exec"，执行命令行下的命令；
+"drop"，删除此次提交。
+
 git init会创建一个隐藏名为.git子目录
 git世界，一个文件是一个git对象，一次提交也是一个git对象。存储在./git/objects/
 git repack
 git repack -d打包后删除以作废的文件,./git/objects/pack
 
-git grep keywoed filename 在指定文件中查找关键词
+git grep keyword filename 在指定文件中查找关键词
 
 git log提交日志
-git reflog操作日志
+git reflog操作日志--查看文件的git commit和git checkout记录
+
+git bisect start
+git bisect good hash
+git bisect bad hash定义bisect查找范围
+git bisect good表示当前程序通过测试
+git bisect bad表示当前程序未通过测试
+make test测试程序是否正确执行
+
+git add filename --edit git自动打开编辑器，内容是git diff结果，只保留到stage的差异
 
 git submodule add url把别人仓库代码作为自己项目一个库来使用，不用clone/cp
+                      不需要clone第三方库，也不需要把第三方库的文件复制到你的项目中
 
 
 
