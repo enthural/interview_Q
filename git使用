@@ -124,8 +124,7 @@ ssh-keygen -t rsa -b 4096 -C '邮箱'
 eval "$(ssh-agent -s)"
 pm2--本地自动化部署
 
-git rm --cached filename---针对untracked文件(commit前),撤销暂存区，工作区未变
-git reset filename---针对modefied文件(commit前)
+
 
 git mv改名，记录到stage
 git mv file 新目录
@@ -136,10 +135,15 @@ git tag 列出所有tag
 git tag -d x删除tag
 git push --tags推送到服务器
 
-git reset --soft HEAD^取消最后一次提交操作
+
+git rm --cached filename---针对untracked文件(commit前),撤销暂存区，工作区未变
+git reset filename---针对modefied文件(commit前)
+
+git reset --soft HEAD^取消最后一次提交操作(取消commit,stage,工作区不变)
 git reset --hard HEAD^删除最后一次提交操作/git reset --hard hash
 
-git commit --amend相当于git reset --soft,git commit(插销commit)弹出编辑器，供你编辑提交说明
+git commit --amend相当于git reset --soft,
+                        git commit(插销commit)弹出编辑器，供你编辑提交说明
 git commit --amend -m ""代替原有的提交说明
 git commit --amend -C HEAD 使用原有的提交说明 -C 表示使用已提交过的说明，HEAD 表示最近一次提
 git commit -a -m ""将已跟踪文件中的执行修改/删除操作在文件提交到本地仓库，即使没有git add
