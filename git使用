@@ -26,8 +26,11 @@ git reflog ---关闭电脑后查找commit id
 git status--查看状态
 git diff
 git diff HEAD --readme.txt查看工作区和版本库区别
-git checkout --文件名.txt---改错了工作取得某文件，撤销在工作区的修改(未add之前)
-git reset HEAD 文件名---不但改错了工作区某文件，还添加到了暂存区，撤销暂存区，想丢弃修改，先回到上个
+
+git checkout --文件名.txt---改错了工作取得某文件，撤销在'工作区'的修改(未add之前)
+git reset HEAD 文件名---不但改错了工作区某文件，还添加到了暂存区，撤销'暂存区'，想丢弃修改，先回到上个
+git reset --hard HEAD^--HEAD当前版本;HEAD^上一个版本    
+
 重新放回工作区(未commit之前)  git checkcout 把暂存取得修改回退到工作区
 提交到版本库.git，撤销本次提交，不过未推到远程库
 rm 工作区 ！== 版本库
@@ -121,14 +124,34 @@ ssh-keygen -t rsa -b 4096 -C '邮箱'
 eval "$(ssh-agent -s)"
 pm2--本地自动化部署
 
-git rm --cached filename---针对untracked文件(commit前)
+git rm --cached filename---针对untracked文件(commit前),撤销暂存区，工作区未变
 git reset filename---针对modefied文件(commit前)
+
+git mv改名，记录到stage
+git mv file 新目录
+
+git tag x给租金一次提交打tag
+git tag x hash
+git tag 列出所有tag
+git tag -d x删除tag
+git push --tags推送到服务器
 
 git reset --soft HEAD^取消最后一次提交操作
 git reset --hard HEAD^删除最后一次提交操作/git reset --hard hash
-git commit --amend相当于git reset --soft,git commit(插销commit)
+
+git commit --amend相当于git reset --soft,git commit(插销commit)弹出编辑器，供你编辑提交说明
+git commit --amend -m ""代替原有的提交说明
+git commit --amend -C HEAD 使用原有的提交说明 -C 表示使用已提交过的说明，HEAD 表示最近一次提
 git commit -a -m ""将已跟踪文件中的执行修改/删除操作在文件提交到本地仓库，即使没有git add
 新加的文件(没有被git系统管理的文件)不能被提交到本地仓库
+
+date
+git commit  使用当前时间为提交时间
+git commit --date=“2016-10-10T12:01:01”
+git commit --date="10 minutes ago"
+git commit --date="noon yesterday"
+git commit --date="last friday"
+
 
 git checkout filename 撤销工作目录中内容
 git checkout branch切换到×分枝
