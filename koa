@@ -1,0 +1,94 @@
+koa会按"中间件"的"添加顺序"以队列方式运行(先添加后运行)所有中间件中调用await next()之"前"的代码，
+直到所有中间件的最末端(第一个没有调用next函数的中间件)运行完成后，
+再以栈的方式运行（先添加后运行）所有中间件中调用 await next() 之“后”的代码。
+
+ps:切记调用 next() 函数时，必须添加 await 关键字。 
+next() 函数在一个中间件中只能调用一次，多次调用会发生 next() called multiple times 错误
+
+实际上 Koa 的中间件能接收的参数有两个: ctx 和 next, 
+next 参数为一个异步函数（调用时须在之前添加 await 关键字，以挂起当前正在运行的中间件），用于转移中间件的运行权：
+
+同一个请求中“所有中间件”中的 ctx 参数为“同一个对象”，因此可以通过该对象实现“在多个中间件中传递数据”。
+ctx.request 为一个 Koa Request 对象，该对象保存有一些与‘用户请求’相关的数据，如 Cookie、查询字符串和请求头等。
+ctx.response 为一个 Koa Response 对象，该对象保存一些与‘用户响应’相关的数据，如 响应头、响应状态、响应数据等。
+ctx.req 和 ctx.res 分别为原生的 NodeJs Request 与 NodeJs Response 对象。
+
+编写的路由中间件的执行流程：
+1、首先要从用户请求中判断HTTP请求方法(GET/POST/PUT/DELETE)
+2、再判断所请求的地址
+3、根据请求的方法与地址查找是否已经注册与之匹配的--路由处理器
+4、如果“存在已注册的路由处理器”则“执行”该处理器，否则向用户响应404错误代码调用 next() 函数执行后续中间件
+
+https://www.zhihu.com/topic/20009619/hot
+
+const methods=['GET', 'POST', 'PUT', 'DELETE'];
+对每一个http方法生成一个map来存储’地址‘和’处理器‘的映射
+class Router{
+  constructor(){
+      this.routesMap = new Map()
+      const rm=this.routesMap
+  }
+  methods.map((method)=>{
+    //根据http方法列表动态生成map以存储地址与处理器的映射
+    rm.set(method,new Map())
+  })
+  //method:http方法
+  //pattern:路由匹配模式
+  //handler:路由处理函数
+  register(method,pattern,handler){
+    let routes = this.routesMap.get(method);
+    if (!routes) {
+      throw new Error('该HTTP方法不受支持！');
+    }
+    routes.set(pattern, handler);
+  }
+  // 为每一个 HTTP 方法生成相应的函数
+methods.map((method) => {
+  Router.prototype[method.toLowerCase()] = function(pattern, handler) {
+    this.register(method, pattern, handler)
+  }
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
