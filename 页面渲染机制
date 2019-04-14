@@ -1,0 +1,132 @@
+浏览器内核--支持浏览器运行的最核心的技术
+      分为：渲染引擎--Trident（IE）、Gecko（火狐）、Blink（Chrome、Opera）、Webkit（Safari）
+           js引擎
+/*页面加载过程*/
+    浏览器根据DNS服务器得到域名的ip地址
+    向ip的机器发送http请求
+    服务器收到，处理&返回http请求---html格式胡字符串
+    浏览器得到返回的内容
+/*浏览器渲染过程*/
+    渲染过程分为3个：
+      浏览器解析3个东西：HTML/SVG/XHTML;CSS;js脚本
+          等到js脚本加载后，通过DOM API 和 CSSOM API 来操作DOM Tree 和 CSS Rule Tree
+      解析完成后，浏览器引擎会通过DOM Tree 和 CSS Rule Tree 来构造Rendering Tree‘
+      最后调用os Native GUI的api绘制
+/*构建DOM*/---html文件---》dom 
+      字节数据--字符串---token---node----dom
+      浏览器从磁盘/网络读取html原始字节，根据文件编码---》字符串---》<html><body>token会标识出当前token是
+“开始标签”或"结束标签"或"文本"     
+/*构建CSSOM*/
+识别出token,构建节点，生成cssom(节点对象)
+浏览器得递归csssom数，才能确定具体的元素是什么样式---样式可自行设置给某个节点，也可通过继承获得
+ps:css匹配html元素是相当复杂，有性能问题--》dom树要小，尽量用id和class
+/*构建渲染树*/
+
+
+渲染过程，遇到<script>停止渲染，执行js,浏览器和js执行共用一个线程，单线程操作，否则产生渲染dom冲突
+js的加载，解析与执行会阻塞dom构建--构建dom时，html解析器遇到js,会暂停构建dom,将控制权交给js引擎...
+
+想要首屏渲染的更快，不应该在首屏就加载js文件
+
+js文件不止阻塞dom，还回导致cssom阻塞dom--y因为js不仅可更改dom,还可更改样式---cssom
+由于不完整的cssom是无法使用的，如果js想访问cssom并更改它，必须拿到完整的cssom.导致
+如果浏览器未完成cssom的下载肯构建，此时运行脚本，浏览器会延迟脚本执行和dom构建，直到完成cssom下载和构建
+/*布局与绘制*/---渲染树--》屏幕上的像素
+浏览器生成渲染树后，根据渲染树布局(回流)--浏览器要清楚各个元素在视口内的确切位置和尺寸
+
+渲染的流程：
+计算css样式  构建render tree   定位坐标和大小  画
+layout:js动态修改了dom属性/css属性
+        
+reflow:对dom的修改导致了样式变化(修改了颜色，背景色)，却未影响几何属性(跳过repaint)---重绘
+repaint: 对dom的修改引发了几何尺寸变化---回流/重排
+重新渲染：reflow+repaint/reflow
+repaint(所需成本高)--->reflow
+/*常见引起reflow方法:*/
+添加/删除可见的dom元素
+元素尺寸改变---margin,padding,border,width/height
+内容变化，在input框输入文字
+浏览器窗口尺寸变化--resize事件发生
+计算 offsetWidth 和 offsetHeight属性
+设置style属性
+
+/*常见引起repaint方法*/
+color             border-style      visibility      background
+text-decoration   bacjground-image  -position       -repeat
+outline-color     outline           outline-style   border-radius
+outline-width     box-shadow      background-size
+/*如何减少reflow,repaint*/
+使用transform--->top
+使用visibility(repaint)替换display:none(reflow改变了布局)    
+不要把节点的属性当成循环变量
+不要使用table布局，小改动造成整个table重新布局
+动画速度越快，回流次数越多，requestAnimationFrame
+css选择符从右往左匹配查找，避免节点层级过多
+将频繁repaint/reflow的节点设为图层--图层能阻止改节点的渲染行为影响别的节点
+
+初始化对页面渲染做优化：
+js优化：<script>标签加上defer/async 在'不阻塞'页面文档解析前提下，控制js脚本的下载和执行
+defer:'开启新'的线程下载脚本文件，并使脚本在文档解析完成后执行
+async:异步下载脚本，下载完后立即解释执行
+css优化：<link rel="preload">在页面中指明拿些资源是'页面加载'完立即需要的，
+
+浏览器工作流程：
+构建dom--->构建cssdom--->构建渲染树--->布局--->绘制
+浏览器遇到不带defer,async属性的<>标签，dom暂停构建
+此时碰巧浏览器未完成cssdom下载&构建，由于js可修改cssom,需等待cssom构建完成再执行js,最后才重构dom
+https://mp.weixin.qq.com/s?__biz=MjM5MjAwODM4MA==&mid=2650718146&idx=2&sn=38267198f96a5c2ddd82e19db54019a7&chksm=bea6ce1189d147076c9f67cd392b0ba3ca1a148a84644aad874dbea208be8659a7eb438e3624&scene=0&xtrack=1&pass_ticket=XO798b3LztuGLshJBfR1ijfqQyo3Ri%2Fru7dDC17T5X0ZNWkBMK5ZQ%2FFORM4sji9G#rd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
