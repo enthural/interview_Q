@@ -1,10 +1,143 @@
 观察者  发布订阅  自定义事件
 
-订阅者/观察者
-发布者/主题---被观察的对象
+订阅者subscriber/观察者observe
+发布者publish/主题subject---被观察的对象
 重要事件发生，发布者会通知(调用)所有订阅者&以事件对象的形式传递消息
 eg1:杂志订阅
 paper(发布者)----joe(订阅者)
 eg2:
+//主题subject/publish发布，保存状态，状态改变后触发观察者对象
+
+class observer{subscriber订阅---等人触发
+                          先订阅上，等待被触发
+                          先定报纸，等待被送到
+                          先点餐，等待被上菜
+
+}
+class subject{//发布---当主题状态变化，需要触发观察者了，触发列表中的update
+  constructor(){
+     this.state=0
+     this.observers=[]
+  }
+  getstate(){
+    return this.state
+  }
+  setstate(new_state){
+    this.state=new_state
+  }
+  notifyallobservers(){
+    this.observers.foreach(o bserver)=>{
+      observer.update()
+    }
+    attach(observer){
+      this.observer.push(observer)
+    
+    } 
+  
+  }
+  场景：网页事件绑定
+        promise
+        jquery callbacks
+        nodejs自定义事件---几种
+  function loadimg(src){
+    var promise=new promise(function(){
+      var img=document.createelement('img')   
+      img.onload=function(){
+        resolve(img)//图片onload(图片加载完后)，会执行resolve,oromise状态变成功
+      }
+      img.onerror=function(){
+        reject('')promise状态变化
+      
+      }
+      img.src=src
+ 
+    
+    })return promsie
+ }
+  var src=''
+  var result=loadimg(src)
+  result.then(fucntion(img){
+  //先订阅上，因为加载图片是要时间的，不是立马执行
+  //需要等pomise状态变化时才执行
+  }).then(function(img){})
+  
+  
+  var callbacks=$.callbacks()
+  callbacks.add(function(info){
+    
+  })
+  callbacks.fire('')
+  
+  //先把一点点接收得函数处理好，结束得函数处理好
+  //再一点点处理流
+  //如果文件比较大，而内存比较小，一下子读完，电脑内存就撑爆了
+  //用流读，读一点，吐出一点
+  //stream用到自定义事件
+  var fs=require('fs')
+  var read_stream=fs.createreadstream()//读取文件的stream
+  
+ var length=0
+ read_stream.on('data',function(chunk){
+  length+=chunk.tostring().length//
+})
+read_stream.on('end',function(){
+  console.log(length)
+})  
+  
+ var readline=require('readline')
+ var fs=require('fs')
+ 
+ var rl=readline.createinteraface({
+  input:fs.readlinereadstream('')
+})
+
+var line_num=0
+rl.on('line',function(line){
+  line_num++
+})
+rl.on('close',function(){
+  consoole.log(line_num)
+})  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
 
 
