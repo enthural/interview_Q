@@ -1,0 +1,23 @@
+js实现单例
+
+class singleobj{
+	
+	login(){//每初始化一个实例，都有login方法
+
+	}
+}
+	//挂在类上面方法，只有一个
+	singleobj.getinstance=(function(){
+		let instance
+		//闭包存储唯一初始化得实例
+		return function(){
+			if(!instance){
+				instance=new singleobj()
+			}
+			return instance
+		}
+
+	} )()
+
+
+
